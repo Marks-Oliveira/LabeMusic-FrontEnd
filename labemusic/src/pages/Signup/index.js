@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { baseUrl } from "../../constants";
 import { useHistory } from "react-router";
@@ -17,6 +17,12 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const history = useHistory();  
+
+  useEffect(() => {
+    if (localStorage.getItem("accessToken") !== null) {
+      history.replace("/musics");
+    }
+  }, [])
 
   const handleGoToLogin = () => {
     history.push("/login");
@@ -39,9 +45,13 @@ const Signup = () => {
       history.replace("/musics");
       
     } catch (error) {
-      alert("Login falhou :(");
+      alert("Cadastro falhou :(");
     }
-  }
+  };
+
+  const inputProps = {
+    pattern:"^[A-Za-z0-9@#%&*]{6,}"
+  }; 
 
   return (
     <Container component="main" maxWidth="xs">
@@ -97,11 +107,13 @@ const Signup = () => {
             fullWidth
             name="password"
             label="Senha"
+            placeholder="Mínimo 6 caracteres"
             type="password"
             id="password"
             autoComplete="current-password"
             value={password}
             onChange={e => setPassword(e.target.value)}
+            inputProps={inputProps}
           />
           <Button
             type="submit"

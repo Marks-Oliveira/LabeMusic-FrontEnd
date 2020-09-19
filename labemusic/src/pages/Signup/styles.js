@@ -1,5 +1,5 @@
 import styled from "styled-components";
 
-export const LinkToLogin = styled.a `
+export const LinkToLogin = styled.div `
   cursor: pointer;
 `;
