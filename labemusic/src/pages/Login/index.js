@@ -54,9 +54,13 @@ const Login = () => {
       history.replace("/musics");
       
     } catch (error) {
-      alert("Cadastro falhou :(");
+      alert("Login falhou :(");
     }
-  }
+  };
+
+  const inputProps = {
+    pattern:"^[A-Za-z0-9@#%&*]{6,}"
+  }; 
 
   return (
     <Container component="main" maxWidth="xs">
@@ -87,6 +91,7 @@ const Login = () => {
             margin="normal"
             required
             fullWidth
+            placeholder="Mínimo 6 caracteres"
             name="password"
             label="Senha"
             type="password"
@@ -94,6 +99,7 @@ const Login = () => {
             autoComplete="current-password"
             value={password}
             onChange={handleUpdatePassword}
+            inputProps={inputProps}
           />
           <Button
             type="submit"

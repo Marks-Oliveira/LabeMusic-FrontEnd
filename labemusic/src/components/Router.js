@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Login from "../pages/Login";
+import Musics from "../pages/Musics";
 import Signup from "../pages/Signup";
 
 const Router = (props) => {
@@ -8,6 +9,9 @@ const Router = (props) => {
   return (
     <BrowserRouter>
       <Switch>
+        <Route exact path = {"/"}>
+          <Login />
+        </Route>
         <Route exact path = {"/login"}>
           <Login />
         </Route>
@@ -15,7 +19,7 @@ const Router = (props) => {
           <Signup />
         </Route> 
         <Route exact path = {"/musics"}>
-          <p>Musics</p>
+          <Musics />
         </Route>
         <Route exact path = {"/music/:id"}>
           <p>Music</p>
