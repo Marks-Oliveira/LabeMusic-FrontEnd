@@ -3,9 +3,11 @@ import axios from "axios";
 import { useHistory } from "react-router";
 import { baseUrl } from "../../constants";
 
-import { LoopCircleLoading } from 'react-loadingg';
-import { MusicWrapper } from "./styles";
+import { WaveTopBottomLoading } from 'react-loadingg';
+import { ButtonContainer, MusicCardContainer, MusicContainer, MusicWrapper } from "./styles";
 import MusicCardInfo from "../../components/MusicCard/MusicCardInfo";
+import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
 
 const Musics = () => {
   const history = useHistory();
@@ -33,16 +35,39 @@ const Musics = () => {
          })
   }, []);
 
+  const handleGoToMusicRegister = () => {
+    history.push("/music/register");
+  }
+
   return (
     <MusicWrapper>
-      {isLoading ? <LoopCircleLoading /> : null}
-      {musics.map((music) => {
-        return ( <MusicCardInfo 
-                    key={music.id} 
-                    music={music} 
-                  />
-                )
-      })}
+      <ButtonContainer>
+        <Button 
+          onClick={handleGoToMusicRegister} 
+          variant="contained" 
+          size="large" 
+          color="secondary"
+        >
+          Cadastrar música
+        </Button>
+      </ButtonContainer>
+      <MusicContainer>
+        <div>
+          <Typography component="h1" variant="h5">
+            Suas músicas cadastradas
+          </Typography>
+        </div>
+        <MusicCardContainer>
+        {isLoading ? <WaveTopBottomLoading /> : null}
+        {musics.map((music) => {
+          return ( <MusicCardInfo 
+                      key={music.id} 
+                      music={music} 
+                    />
+                  )
+        })}
+        </MusicCardContainer>
+      </MusicContainer>
     </MusicWrapper>
   );
 

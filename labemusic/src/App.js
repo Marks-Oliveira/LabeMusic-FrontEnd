@@ -1,11 +1,12 @@
 import React from "react";
 import Router from "./components/Router";
+import { AppWrapper } from "./styles";
 
 function App() {
   return (
-    <div>
+    <AppWrapper>
       <Router />
-    </div>
+    </AppWrapper>
   );
 }
 

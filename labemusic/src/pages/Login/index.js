@@ -10,8 +10,16 @@ import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import { LinkToSignup } from "./styles";
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import logo from "../../images/logo-labemusic.png";
+import { 
+  AvatarContent,
+  ImageContent,
+  ImageLogo, 
+  LinkToSignup, 
+  LoginContainer, 
+  LoginContent
+} from "./styles";
 
 const Login = () => {
 
@@ -27,16 +35,6 @@ const Login = () => {
 
   const handleGoToSignup = () => {
     history.push("/signup");
-  }
-
-  const handleUpdateEmailOrNickname = (event) => {
-    const newEmailOrNickname = event.target.value;
-    setEmailOrNickname(newEmailOrNickname);
-  }
-
-  const handleUpdatePassword = (event) => {
-    const newPassword = event.target.value;
-    setPassword(newPassword);
   }
 
   const handleLogin = async (event) => {
@@ -63,64 +61,75 @@ const Login = () => {
   }; 
 
   return (
-    <Container component="main" maxWidth="xs">
-      <div>
-        <Avatar>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Login
-        </Typography>
-        <form onSubmit={handleLogin}>
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            label="Email ou Nickname"
-            name="email"
-            type="email"
-            autoComplete="email"
-            autoFocus
-            value={emailOrNickname}
-            onChange={handleUpdateEmailOrNickname}
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            placeholder="Mínimo 6 caracteres"
-            name="password"
-            label="Senha"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-            value={password}
-            onChange={handleUpdatePassword}
-            inputProps={inputProps}
-          />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-          >
-            Entrar
-          </Button>
-          <Grid container>
-            <Grid item>
-              <LinkToSignup>
-                <Link onClick={handleGoToSignup} variant="body2">
-                  {"Não possui conta? Cadastre-se"}
-                </Link>
-              </LinkToSignup>
-            </Grid>
-          </Grid>
-        </form>
-      </div>
-    </Container>
+    <div>
+      <LoginContainer>
+        <ImageContent>
+          <ImageLogo src={logo} alt="Logo Labemusic" />
+        </ImageContent>
+        <LoginContent>
+          <Container component="main" maxWidth="xs">
+            <div>
+              <AvatarContent>
+                <Avatar>
+                  <LockOutlinedIcon color="primary"/>
+                </Avatar>
+                <Typography component="h1" variant="h5">
+                  Login
+                </Typography>
+              </AvatarContent>
+              <form onSubmit={handleLogin}>
+                <TextField
+                  variant="outlined"
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="email"
+                  label="Email ou Nickname"
+                  name="email"
+                  type="email"
+                  autoComplete="email"
+                  autoFocus
+                  value={emailOrNickname}
+                  onChange={e => setEmailOrNickname(e.target.value)}
+                />
+                <TextField
+                  variant="outlined"
+                  margin="normal"
+                  required
+                  fullWidth
+                  placeholder="Mínimo 6 caracteres"
+                  name="password"
+                  label="Senha"
+                  type="password"
+                  id="password"
+                  autoComplete="current-password"
+                  value={password}
+                  onChange={e => setPassword(e.target.value)}
+                  inputProps={inputProps}
+                />
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  color="primary"
+                >
+                  Entrar
+                </Button>
+                <Grid container>
+                  <Grid item>
+                    <LinkToSignup>
+                      <Link onClick={handleGoToSignup} variant="body1">
+                        {"Não possui conta? Cadastre-se"}
+                      </Link>
+                    </LinkToSignup>
+                  </Grid>
+                </Grid>
+              </form>
+            </div>
+          </Container>
+        </LoginContent>
+      </LoginContainer>
+    </div>
   );
 
 };
