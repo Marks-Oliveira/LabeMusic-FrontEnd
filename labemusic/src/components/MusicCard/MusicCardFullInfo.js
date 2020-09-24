@@ -29,13 +29,13 @@ const MusicCardFullInfo = ({music, onClose}) => {
               <Typography gutterBottom variant="h5" component="h2">
                 {music.title}
               </Typography>
-              <Typography variant="body1" color="textSecondary" component="h3">
+              <Typography variant="body1" color="textSecondary" component="h1">
                 {"Data: " + music.date}
               </Typography>
-              <Typography variant="body1" color="textSecondary" component="h3">
+              <Typography variant="body1" color="textSecondary" component="h1">
                 {"Gênero: " + music.genres}
               </Typography>
-              <Typography variant="body1" color="textSecondary" component="h3">
+              <Typography variant="body1" color="textSecondary" component="h1">
                 {"Album: " + music.album}
               </Typography>
             </CardContent>
@@ -46,7 +46,8 @@ const MusicCardFullInfo = ({music, onClose}) => {
                 color="secondary" 
                 size="small"
                 onClick={onClose}
-            > X 
+            > 
+              X 
             </Button>
           </CloseButton>
         </Card>

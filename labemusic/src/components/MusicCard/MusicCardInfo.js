@@ -6,14 +6,14 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import musica from "../../images/musica.jpg";
 import MusicCardFullInfo from "./MusicCardFullInfo";
-import { Image } from "./styles";
+import { Image, MusicCardInfoWrapper } from "./styles";
 
 const MusicCardInfo = (props) => {
   
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   return (
-    <div>
+    <MusicCardInfoWrapper>
       <Card onClick={() => setIsModalVisible(true)}>
         <CardActionArea>
           <Image src={musica} alt="Música" />
@@ -32,7 +32,7 @@ const MusicCardInfo = (props) => {
                           onClose={() => setIsModalVisible(false)} 
                         /> 
                         : null }
-    </div>
+    </MusicCardInfoWrapper>
   );
 
 };

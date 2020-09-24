@@ -9,7 +9,9 @@ import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
-import { LinkToLogin } from "./styles";
+import Avatar from "@material-ui/core/Avatar";
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import { LinkToLogin, SignupContainer, AvatarContent } from "./styles";
 
 const Signup = () => {
   const [userName, setUserName] = useState("");  
@@ -54,87 +56,96 @@ const Signup = () => {
   }; 
 
   return (
-    <Container component="main" maxWidth="xs">
-      <div>
-        <Typography component="h1" variant="h5">
-          Cadastrar
-        </Typography>
-        <form onSubmit={handleSignup}>
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="name"
-            label="Nome"
-            name="name"
-            type="text"
-            autoComplete="name"
-            autoFocus
-            value={userName}
-            onChange={e => setUserName(e.target.value)}
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="nickname"
-            label="Nickname"
-            name="nickname"
-            type="text"
-            autoComplete="nickname"
-            value={userNickname}
-            onChange={e => setUserNickname(e.target.value)}
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            label="Email"
-            name="email"
-            type="email"
-            autoComplete="email"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Senha"
-            placeholder="Mínimo 6 caracteres"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-            inputProps={inputProps}
-          />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-          >
-            Entrar
-          </Button>
-          <Grid container>
-            <Grid item>
-              <LinkToLogin>
-                <Link onClick={handleGoToLogin} variant="body2">
-                  {"Já possui conta? Logue-se"}
-                </Link>
-              </LinkToLogin>
-            </Grid>
-          </Grid>
-        </form>
-      </div>
-    </Container>
+    <div>
+      <SignupContainer>
+        <Container component="main" maxWidth="xs">
+          <div>
+            <AvatarContent>
+              <Avatar>
+                <LockOutlinedIcon color="primary"/>
+              </Avatar>
+              <Typography component="h1" variant="h5">
+                Cadastre-se
+              </Typography>
+            </AvatarContent>
+            <form onSubmit={handleSignup}>
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="name"
+                label="Nome"
+                name="name"
+                type="text"
+                autoComplete="name"
+                autoFocus
+                value={userName}
+                onChange={e => setUserName(e.target.value)}
+              />
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="nickname"
+                label="Nickname"
+                name="nickname"
+                type="text"
+                autoComplete="nickname"
+                value={userNickname}
+                onChange={e => setUserNickname(e.target.value)}
+              />
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="email"
+                label="Email"
+                name="email"
+                type="email"
+                autoComplete="email"
+                value={email}
+                onChange={e => setEmail(e.target.value)}
+              />
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                name="password"
+                label="Senha"
+                placeholder="Mínimo 6 caracteres"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+                value={password}
+                onChange={e => setPassword(e.target.value)}
+                inputProps={inputProps}
+              />
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
+              >
+                Entrar
+              </Button>
+              <Grid container>
+                <Grid item>
+                  <LinkToLogin>
+                    <Link onClick={handleGoToLogin} variant="body1">
+                      {"Já possui conta? Logue-se"}
+                    </Link>
+                  </LinkToLogin>
+                </Grid>
+              </Grid>
+            </form>
+          </div>
+        </Container>
+      </SignupContainer>
+    </div>
   );
 
 };
