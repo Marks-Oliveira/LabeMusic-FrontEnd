@@ -24,41 +24,33 @@ import {
 } from "./styles";
 
 const MusicRegister = () => {
+  const history = useHistory();
   const [musicTitle, setMusicTitle] = useState("");
   const [musicAuthor, setMusicAuthor] = useState("");
   const [musicDate, setMusicDate] = useState("");
   const [musicFile, setMusicFile] = useState("");
   const [musicAlbum, setMusicAlbum] = useState("");
   const [musicGenres, setMusicGenres] = useState([]);
-  const history = useHistory();
-
+  
   useEffect(() => {
     if (localStorage.getItem("accessToken") === null) {
       history.replace("/login");
     }
   }, [])
-
+  
   const handleGoToMusics = () => {
     history.push("/musics");
   };
 
-  const checkboxGenres = [
-    "Axé", "Blues", "Country", "Eletrônica", "Forró", 
-    "Funk", "Gospel", "Hip Hop", "Jazz", "MPB", 
-    "Música clássica", "Pagode", "Pop", "Rap", 
-    "Reggae", "Rock", "Samba", "Sertanejo"
-  ];
-
-  const getValue = (event) => {
-    let data = musicGenres;
-    if (event.target.checked) {
-      data.push(event.target.value);
-      setMusicGenres(data);
+  const getValue = (e) => {
+    if (musicGenres.includes(e.target.value)) {
+      const newGenre = musicGenres.filter((item) => item !== e.target.value);
+      setMusicGenres(newGenre);
     } else {
-      data.splice(data.indexOf(event.target.value));
-      setMusicGenres(data);
+      setMusicGenres([...musicGenres, e.target.value]);
     }
   };
+  
 
   const handleMusicRegister = async (event) => {
     event.preventDefault();
@@ -68,7 +60,7 @@ const MusicRegister = () => {
         authorization: localStorage.getItem("accessToken")
       }
     }
-
+    
     const formattedDate = moment(musicDate, "YYYY-MM-DD").format("DD/MM/YYYY");
     const body = {
       title: musicTitle,
@@ -78,16 +70,29 @@ const MusicRegister = () => {
       album: musicAlbum,
       genre: musicGenres
     };
-
+    
     try {
-
+      
       await axios.post(`${baseUrl}/music`, body, axiosConfig);
       
       alert("Música cadastrada com sucesso!!!")
     } catch (error) {
       alert("Cadastro falhou :(");
     }
+    
+    setMusicTitle("");
+    setMusicAuthor("");
+    setMusicDate("");
+    setMusicFile("");
+    setMusicAlbum("");
+    setMusicGenres([]);
   };
+  
+  const checkboxGenres = [
+    "Axé", "Blues", "Country", "Eletrônica", "Forró", "Funk", 
+    "Gospel", "Hip Hop", "Jazz", "MPB", "Música clássica", "Pagode",
+    "Pop", "Rap", "Reggae", "Rock", "Samba", "Sertanejo"
+  ];
 
   return (
     <MusicRegisterWrapper>
@@ -180,9 +185,10 @@ const MusicRegister = () => {
                       return <FormControlLabel key={genre}
                                 control={<Checkbox 
                                           color="primary"
-                                          value={genre} 
-                                          onChange={(e) => getValue(e)} 
-                                          />}
+                                          value={genre}
+                                          onChange={(e) => getValue(e)}
+                                          checked={musicGenres.includes(genre)}
+                                        />}
                                 label={genre}
                               />
                     })}

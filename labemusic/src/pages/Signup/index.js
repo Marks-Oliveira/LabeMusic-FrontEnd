@@ -51,10 +51,6 @@ const Signup = () => {
     }
   };
 
-  const inputProps = {
-    pattern:"^[A-Za-z0-9@#%&*]{6,}"
-  }; 
-
   return (
     <div>
       <SignupContainer>
@@ -82,6 +78,9 @@ const Signup = () => {
                 autoFocus
                 value={userName}
                 onChange={e => setUserName(e.target.value)}
+                inputProps={{
+                  "data-testid": "name-input"
+                }}
               />
               <TextField
                 variant="outlined"
@@ -95,6 +94,9 @@ const Signup = () => {
                 autoComplete="nickname"
                 value={userNickname}
                 onChange={e => setUserNickname(e.target.value)}
+                inputProps={{
+                  "data-testid": "nickname-input"
+                }}
               />
               <TextField
                 variant="outlined"
@@ -108,6 +110,9 @@ const Signup = () => {
                 autoComplete="email"
                 value={email}
                 onChange={e => setEmail(e.target.value)}
+                inputProps={{
+                  "data-testid": "email-input"
+                }}
               />
               <TextField
                 variant="outlined"
@@ -122,7 +127,10 @@ const Signup = () => {
                 autoComplete="current-password"
                 value={password}
                 onChange={e => setPassword(e.target.value)}
-                inputProps={inputProps}
+                inputProps={{
+                  pattern:"^[A-Za-z0-9@#%&*]{6,}",
+                  "data-testid": "password-input"
+                }}
               />
               <Button
                 type="submit"
