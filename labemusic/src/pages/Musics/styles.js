@@ -10,7 +10,11 @@ export const MusicWrapper = styled.div `
 export const MusicContainer = styled.div `
   display: flex;
   flex-direction: column;
-  padding: 32px;
+  padding: 24px;
+  max-width: 90%;
+  height: auto;
+  margin-top: 120px;
+  margin-bottom: 20px;
   box-shadow: 10px 10px 40px -10px rgba(0,0,0,0.61);
   border-radius: 20px;
   border: 1px solid black;

@@ -8,5 +8,4 @@ export const AppWrapper = styled.div `
   min-height: 100vh;
   background-image: url("${backgroundMusic}");
   background-size: 100% 100%;
-  background-color: rgba(0, 255, 0, 0.7);
 `;

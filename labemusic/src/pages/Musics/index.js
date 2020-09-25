@@ -16,7 +16,7 @@ const Musics = () => {
 
   useEffect(() => {
     if (localStorage.getItem("accessToken") === null) {
-      history.replace("/login")
+      history.push("/login")
     }
   }, []);
 
